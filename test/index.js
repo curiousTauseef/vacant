@@ -2,7 +2,7 @@ var should = require('chai').should();
 var vacant = require('../index');
 
 describe ('vacant', function() {
-
+    
     it ('returns true for null', function() {
         vacant(null).should.equal(true);
     });
@@ -99,5 +99,19 @@ describe ('vacant', function() {
     it ('returns true for {test: [0, " ", null, undefined, { test : 5}] }', function() {
         vacant({test:[0, " ", null, undefined, { test : 5}] }).should.equal(false);
     });
+    
+
+    var test = {"a":"b","c":{"d":"e","f":"g","h":"i","j":"k","l":"m","n":"o"},"p":"q","r":"s","t":"u"};
+    var test_false = {"a":"","b":{"c":"","d":"","e":"","f":"","g":"","h":""},"i":"","j":"","k":""};
+    
+    it ('returns true for nested objects', function() {
+        vacant(test).should.equal(false);
+    });
+
+    it ('returns false for nested false objects', function() {
+        vacant(test_false).should.equal(true);
+    });
+
+    
 
 });

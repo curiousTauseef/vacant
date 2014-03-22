@@ -12,7 +12,9 @@
   },
   "keywords": [
     "empty",
-    "objects"
+    "objects", 
+    "empty objects", 
+    "objects containing only false"
   ],
   "author": "Scott Frees <scott.frees@gmail.com> (http://scottfrees.net/)",
   "license": "MIT",
