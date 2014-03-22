@@ -1,6 +1,6 @@
 {
   "name": "vacant",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Checks for empty js object or objects with only \"false\" properties",
   "main": "index.js",
   "scripts": {
