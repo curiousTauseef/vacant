@@ -112,6 +112,21 @@ describe ('vacant', function() {
         vacant(test_false).should.equal(true);
     });
 
+
+    // ignore some property names
+    it ('returns true for {test: true} when test is ignored', function() {
+        vacant({test:5}, {ignore_props:"test"}).should.equal(true);
+    });
+
+    it ('returns true for {test123: true} when ^test is ignored', function() {
+        vacant({test123:5}, {ignore_props:"^test"}).should.equal(true);
+    });
+
+    it ('returns true for {test123: true} when ^test5 is ignored', function() {
+        vacant({test123:5}, {ignore_props:"^test5"}).should.equal(false);
+    });
+
+   
     
 
 });

@@ -1,4 +1,6 @@
-var is_obj_false = function (obj) {
+var is_obj_false = function (obj, opts) {
+    opts = typeof opts !== 'undefined' ? opts : {};
+
     if ( !obj ) return true;
     
     if ( typeof obj != 'object') {
@@ -6,7 +8,7 @@ var is_obj_false = function (obj) {
     }
     
     for (p in obj) {
-        if (obj.hasOwnProperty(p)) {
+        if (obj.hasOwnProperty(p) && ! ignore_prop(p, opts)) {
             if (! is_false(obj, p) ) {
                 return false;
             }
@@ -14,6 +16,16 @@ var is_obj_false = function (obj) {
     }
 
     return true;
+}
+
+function ignore_prop(p, opts) {
+    var regex = opts.ignore_props ? new RegExp(opts.ignore_props) : undefined;
+    if ( regex ) {
+        return regex.test(p);
+    }
+    else {
+        return false;
+    }
 }
 
 function is_non_object_false(thing) {
