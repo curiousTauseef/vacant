@@ -60,6 +60,10 @@ describe ('vacant', function() {
         vacant({test:[0, " ", null, undefined]}).should.equal(true);
     });
 
+    it ('returns true for {test: [0, "\t\n  ", null, undefined, { test : 0}] }', function() {
+        vacant({test:[0, " ", null, undefined]}).should.equal(true);
+    });
+
 
 
     // ---- false tests
@@ -125,6 +129,15 @@ describe ('vacant', function() {
     it ('returns true for {test123: true} when ^test5 is ignored', function() {
         vacant({test123:5}, {ignore_props:"^test5"}).should.equal(false);
     });
+
+    // make sure things don't blow up when there is a circular referencec
+    it ( 'is robust against circular references', function () {
+        console.log("here");
+        var obj = { a : 0, b : 0, c : [ 0, 0 ] };
+        obj.c.push(obj);
+        vacant(obj).should.equal(true);
+    });
+
 
    
     
